@@ -2,7 +2,7 @@
   /* Color Palette (60-30-10 Rule) */
   --bg-primary: #0f172a;       /* Deep Slate (60%) */
   --bg-secondary: #1e293b;      /* Slate Blue (30%) */
-  --accent: #8b5cf6;             /* Violet (10%) */
+  --accent: #a78bfa;             /* Violet (10%) */
   --text-primary: #f8fafc;      /* Off-white */
   --text-secondary: #94a3b8;     /* Muted Gray */
   --border: #334155;             /* Border/Divider */
@@ -34,11 +34,16 @@ body {
   color: var(--text-primary);
   font-family: var(--font-body);
   line-height: 1.6;
-  overflow-x: hidden;
 }
 
-h1, h2, h3, .nav-link {
+h1, h2, h3 {
   font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
   font-weight: 700;
 }
 
@@ -50,6 +55,11 @@ a {
 
 a:hover {
   color: var(--accent);
+}
+
+a:focus-visible, .btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .container {
@@ -101,10 +111,6 @@ a:hover {
 }
 
 /* Layout / section utilities */
-.section {
-  padding: 0;
-}
-
 .section--padded-xl {
   padding: var(--spacing-xl) 0;
 }
@@ -182,9 +188,9 @@ a:hover {
 }
 
 .cv-list {
-  list-style: none;
   color: var(--text-secondary);
   max-width: 600px;
+  padding-left: 1.25em;
 }
 
 .cv-list li {
@@ -247,4 +253,24 @@ a:hover {
 .btn:hover {
   background: var(--accent);
   color: var(--bg-primary);
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  :root {
+    --container-padding: 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.25rem, 8vw, 4rem);
+  }
+
+  .nav-links {
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  .cards-grid {
+    gap: var(--spacing-md);
+  }
 }

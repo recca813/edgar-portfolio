@@ -1,7 +1,9 @@
 # Edgar Pineda — Portfolio
 
-Hand-built multi-page static site. No build step — open any `.html` file
-directly or serve the folder with any static file server.
+Hand-built multi-page static site. No build step — serve the folder with
+any static file server (e.g. `python -m http.server`). Root pages use
+root-absolute nav links (`/work.html` etc.), so opening `.html` files
+directly via `file://` will break navigation.
 
 ## Structure
 - `index.html` — homepage
