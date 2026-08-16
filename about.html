@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Edgar Pineda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Sora:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="container nav-bar__row">
+            <a href="/" class="logo">EP_SYSTEMS</a>
+            <div class="nav-links">
+                <a href="/work.html">Work</a>
+                <a href="/about.html" class="active">About</a>
+                <a href="/contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Narrative -->
+        <section class="hero section section--padded-xl">
+            <div class="container">
+                <div class="hero-content case-hero">
+                    <h1 class="case-title">About Edgar</h1>
+                    <p class="case-subtitle">Agentic AI &amp; Workflow Automation Engineer, Dubai, UAE</p>
+                </div>
+
+                <div class="case-section">
+                    <p>I build systems that run without me in the room. That's the through-line across trading automation, n8n pipelines, and the products I ship: an MQL5 Expert Advisor that reacts to fills at 2am, an n8n workflow that scrapes and filters job listings every morning before I'm awake, a local voice assistant that answers questions against my own notes without touching the internet. If it needs a human to babysit it, I don't consider it finished.</p>
+                    <p>I work by building the real thing fast and iterating from what breaks, rather than spending weeks on upfront specs. Most of what's in the Work section started as a rough version that shipped, then got rebuilt once or twice as I found the actual failure modes &mdash; a webhook that needed retry logic, a repaint bug in a TradingView indicator, an error branch a workflow didn't have yet. I'd rather have a working system with known rough edges than a polished plan that hasn't met production.</p>
+                    <p>Outside of client and personal projects, I spend a lot of time on trading systems &mdash; Pine Script indicators, MT5 EAs, and the automation that connects them to Discord and a trade journal &mdash; and on running a fully local AI voice pipeline (llama.cpp, RAG over my own Markdown vault, local TTS) mostly because I wanted to see how far "no cloud dependency" could go. Both are the kind of side projects that turn into real infrastructure because I actually use them daily.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CV: Summary -->
+        <section class="cv section section--padded-xl section--secondary-bg">
+            <div class="container">
+                <div class="cv-block">
+                    <h2 class="section-title">Professional Summary</h2>
+                    <div class="case-section">
+                        <p>An Agentic AI &amp; Workflow Automation Engineer with over 15 years of combined experience across IT systems support, customer-facing operations, and, most recently, n8n and AI-agentic workflow automation. Proven track record of designing and deploying production automation workflows that integrate Claude and Google Gemini AI agents with real-world business processes (CRM, trading-event notification, content categorization). Adept at API/webhook integration and building resilient, error-handled data pipelines. Passionate about leveraging automation and agentic AI to streamline operations and cut manual workload across the teams I support.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CV: Skills -->
+        <section class="cv section section--padded-xl">
+            <div class="container">
+                <div class="cv-block">
+                    <h2 class="section-title">Core Competencies &amp; Skills</h2>
+                    <h3 class="card-title">Technical Skills</h3>
+                    <ul class="cv-list">
+                        <li>- n8n, Zapier, Make.com &mdash; workflow automation</li>
+                        <li>- REST API, webhook &amp; MCP server integration</li>
+                        <li>- AI agent design (Claude, Google Gemini); self-hosted LLMs (llama.cpp) &amp; RAG</li>
+                        <li>- Next.js/React; Supabase; Vercel; Docker; Git/GitHub</li>
+                        <li>- MQL5 (MetaTrader 5 EA) &amp; Pine Script v6 (TradingView)</li>
+                        <li>- Google Sheets/Docs API; network/hardware support; MS Office</li>
+                    </ul>
+                    <h3 class="card-title">Soft Skills</h3>
+                    <ul class="cv-list">
+                        <li>- Client relationship management &amp; cross-team communication</li>
+                        <li>- Quick technical learner</li>
+                        <li>- Problem-solving and diagnostic troubleshooting</li>
+                        <li>- Attention to detail and data accuracy</li>
+                        <li>- Customer service</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CV: Key Projects -->
+        <section class="projects section section--padded-xl section--secondary-bg">
+            <div class="container">
+                <h2 class="section-title section-title--xl">Key Projects</h2>
+                <div class="cards-grid">
+
+                    <div class="card">
+                        <h3 class="card-title">Ludex Content Feed</h3>
+                        <p class="card-body">Automated gaming news and deals site: an n8n pipeline pulls CheapShark deals and RSS feeds every 6 hours, summarizes each article with Google Gemini Flash-Lite, and upserts results into Supabase for a public Vercel front end.</p>
+                        <div class="tags">
+                            <span class="tag">n8n</span>
+                            <span class="tag">Supabase</span>
+                            <span class="tag">CheapShark API</span>
+                            <span class="tag">RSS</span>
+                            <span class="tag">Google Gemini</span>
+                            <span class="tag">Vercel</span>
+                            <span class="tag">React</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">Agentic Job Automation System</h3>
+                        <p class="card-body">Daily autonomous workflow that scrapes job boards for Dubai and remote AI roles, uses Google Gemini to filter listings for relevance and location, and logs qualified results to a shared Google Sheet with retry and error-logging branches on every fallible step.</p>
+                        <div class="tags">
+                            <span class="tag">n8n</span>
+                            <span class="tag">Firecrawl</span>
+                            <span class="tag">Google Gemini</span>
+                            <span class="tag">Google Sheets API</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">Video Transcription and Translation Pipeline</h3>
+                        <p class="card-body">Dual-input automation (Google Drive folder watch and YouTube URL form) that transcribes and translates video content, generates auto-synced captions and summaries via Creatomate, and writes final output to Google Docs.</p>
+                        <div class="tags">
+                            <span class="tag">n8n</span>
+                            <span class="tag">OpenAI Whisper</span>
+                            <span class="tag">Google Cloud TTS</span>
+                            <span class="tag">Creatomate</span>
+                            <span class="tag">Google Docs API</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">Local AI Voice Assistant</h3>
+                        <p class="card-body">Offline-first voice assistant running entirely on local hardware: push-to-talk speech-to-text, a locally served Qwen 9B model answering questions over a personal Markdown knowledge base, and local neural text-to-speech for spoken replies, with cloud APIs wired only as fallback.</p>
+                        <div class="tags">
+                            <span class="tag">llama.cpp</span>
+                            <span class="tag">Qwen</span>
+                            <span class="tag">faster-whisper</span>
+                            <span class="tag">Kokoro TTS</span>
+                            <span class="tag">Next.js</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Docker</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">Multi-Timeframe TradingView Indicator</h3>
+                        <p class="card-body">Built and optimized a multi-timeframe market-structure indicator with a live on-chart dashboard, resolving repaint issues and adding invalidation logic that voids trade setups on specific wick breaches.</p>
+                        <div class="tags">
+                            <span class="tag">Pine Script v6</span>
+                            <span class="tag">TradingView</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CV: Experience -->
+        <section class="cv section section--padded-xl">
+            <div class="container">
+                <div class="cv-block">
+                    <h2 class="section-title">Professional Experience</h2>
+
+                    <h3 class="card-title">GIS Specialist | URBI &mdash; Dubai, UAE</h3>
+                    <p class="text-secondary" style="margin-bottom: var(--spacing-sm);">August 2020 &ndash; Present</p>
+                    <ul class="cv-list">
+                        <li>- Collected and integrated geographic data from field surveys, aerial photography, and satellite imagery, maintaining accurate infrastructure mapping records</li>
+                        <li>- Updated and maintained maps reflecting current geographic and infrastructure changes, ensuring dataset reliability across projects</li>
+                        <li>- Managed structured geospatial datasets, preserving accuracy and consistency for cross-project use</li>
+                    </ul>
+
+                    <h3 class="card-title">Junior Sales Executive | Etisalat &mdash; Dubai, UAE</h3>
+                    <p class="text-secondary" style="margin-bottom: var(--spacing-sm);">March 2019 &ndash; February 2020</p>
+                    <ul class="cv-list">
+                        <li>- Assessed customer requirements and presented tailored solutions, closing sales through consultative selling</li>
+                        <li>- Resolved customer complaints and objections professionally, maintaining service quality standards</li>
+                        <li>- Gathered and relayed customer feedback to management, contributing to service delivery improvements</li>
+                    </ul>
+
+                    <h3 class="card-title">Sales Executive | LEVANT (Couture Division) &mdash; Dubai, UAE</h3>
+                    <p class="text-secondary" style="margin-bottom: var(--spacing-sm);">December 2012 &ndash; December 2018</p>
+                    <ul class="cv-list">
+                        <li>- Delivered consistent, high-quality customer service and personalized product recommendations</li>
+                        <li>- Built and maintained long-term client relationships across in-person, phone, and email channels</li>
+                        <li>- Ensured pricing accuracy and upheld selling-floor presentation standards</li>
+                    </ul>
+
+                    <h3 class="card-title">Server and Network Operations (OJT) | Saint Mary's University</h3>
+                    <p class="text-secondary" style="margin-bottom: var(--spacing-sm);">December 2009 &ndash; December 2010</p>
+                    <ul class="cv-list">
+                        <li>- Installed and configured computer hardware, operating systems, and applications for university systems</li>
+                        <li>- Monitored and maintained computer systems and networks, diagnosing and resolving hardware/software faults</li>
+                        <li>- Set up new user accounts and profiles, resolving password and access issues for staff and students</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CV: Education -->
+        <section class="cv section section--padded-xl section--secondary-bg">
+            <div class="container">
+                <div class="cv-block">
+                    <h2 class="section-title">Education</h2>
+                    <ul class="cv-list">
+                        <li>- BS in Information Technology &mdash; Saint Mary's University, Bayombong, Nueva Vizcaya, Philippines</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CV: Certifications -->
+        <section class="cv section section--padded-xl">
+            <div class="container">
+                <div class="cv-block">
+                    <h2 class="section-title">Certifications</h2>
+                    <ul class="cv-list">
+                        <li>- <strong>AI Automation with n8n (Full Training)</strong> &mdash; Technical Virtual Assistants PH, completed November 29, 2025. Instructor: RJ Villamer. Covered: AI Agents vs AI Workflows, n8n server setup, workflows/nodes fundamentals, triggers, actions, filtering/conditions/branching, looping/merging data, connecting to APIs and AI Agents.</li>
+                        <li>- <strong>No Code Automation with Make.com (Full Training)</strong> &mdash; Technical Virtual Assistants PH, completed November 23, 2025. Instructor: RJ Villamer. Covered: Make.com interface walkthrough, scenario structure, filters, triggers, connecting apps, actions, error handling, and HTTP requests.</li>
+                        <li>- <strong>No Code Automation with Zapier (Full Training)</strong> &mdash; Technical Virtual Assistants PH, completed November 23, 2025. Instructor: RJ Villamer. Covered: Zapier interface, triggers, Formatter by Zapier, Delay by Zapier, Filter by Zapier, Paths by Zapier, Looping by Zapier, Sub-Zaps, Webhooks, and AI by Zapier.</li>
+                        <li>- <strong>Prompt Engineering (Full Training)</strong> &mdash; Technical Virtual Assistants PH, completed November 23, 2025. Instructor: RJ Villamer. Covered: prompt engineering fundamentals, anatomy of a good prompt, practical prompt techniques, real-world scenarios, tools/templates/prompt libraries, and building prompt workflows.</li>
+                        <li>- <strong>One Million Prompters &mdash; Certificate of Completion</strong> &mdash; Dubai Future Foundation (Dubai Centre for Artificial Intelligence), completed August 2026. Recognizes completion of the "One Million Prompters" initiative launched by H.H. Sheikh Hamdan bin Mohammed bin Rashid Al Maktoum, Crown Prince of Dubai, training and empowering one million people in prompt engineering skills for AI systems, aligned with the Dubai Universal Blueprint for Artificial Intelligence. Skills: Prompt Engineering, Artificial Intelligence (AI).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Edgar Pineda. Built for precision.</p>
+            <div class="footer-meta">
+                <a href="mailto:epineda813@gmail.com" class="footer-link">Email</a>
+                <a href="https://github.com/recca813" class="footer-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
