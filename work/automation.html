@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading & Automation Systems | Edgar Pineda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Sora:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="container nav-bar__row">
+            <a href="../" class="logo">EP_SYSTEMS</a>
+            <div class="nav-links">
+                <a href="../work.html" class="active">Work</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Case Study Hero -->
+        <section class="hero section section--padded-xl">
+            <div class="container">
+                <div class="case-hero">
+                    <h1 class="case-title">Trading & Automation Systems</h1>
+                    <p class="case-subtitle">Signal detection, execution, and orchestration automated end-to-end across TradingView, MetaTrader, and n8n.</p>
+                    <div class="tags">
+                        <span class="tag">n8n</span>
+                        <span class="tag">MQL5</span>
+                        <span class="tag">Pine Script</span>
+                        <span class="tag">Next.js</span>
+                        <span class="tag">Discord API</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Body -->
+        <section class="section section--padded-xl section--secondary-bg">
+            <div class="container">
+                <div class="case-section">
+                    <h2 class="section-title">Problem</h2>
+                    <p>Manual trading workflows — order execution, trade logging, market-structure analysis — are slow and error-prone at the frequency active trading requires.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="section-title">Approach</h2>
+                    <p>The fix was automating the whole loop: signal detection via Pine Script indicators on TradingView, execution and notification via MQL5 Expert Advisors, and orchestration via n8n workflows relaying events to Discord and other systems — plus a local monitoring dashboard to see all of it running in one place.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="section-title">What was built</h2>
+                    <p>Pine Script v6 indicators handle multi-timeframe market-structure analysis on TradingView. MetaTrader Expert Advisors include a Discord trade notifier that posts entries, order placements, and modifications via <code>OnTradeTransaction</code>, and a multi-pair sweep-and-engulf scanner feeding a live n8n relay. An n8n instance orchestrates the webhook-driven workflows connecting all of it, and a Next.js local dashboard surfaces workflow health, trade journal data, market scanner output, and infra status in one view.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="section-title">Outcome</h2>
+                    <p>This is an actively used, running system, not a one-off demo — the dashboard and EAs run continuously, and workflows go through a standing validate-then-test process before activation.</p>
+                </div>
+
+                <a href="../work.html" class="btn back-link">&larr; Back to Work</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Edgar Pineda. Built for precision.</p>
+            <div class="footer-meta">
+                <a href="mailto:epineda813@gmail.com" class="footer-link">Email</a>
+                <a href="https://github.com/recca813" class="footer-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

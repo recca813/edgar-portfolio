@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GroundTruth | Edgar Pineda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Sora:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="container nav-bar__row">
+            <a href="../" class="logo">EP_SYSTEMS</a>
+            <div class="nav-links">
+                <a href="../work.html" class="active">Work</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Case Study Hero -->
+        <section class="hero section section--padded-xl">
+            <div class="container">
+                <div class="case-hero">
+                    <h1 class="case-title">GroundTruth</h1>
+                    <p class="case-subtitle">A Waze-like map app that pays contributors for verified real-world map changes.</p>
+                    <div class="tags">
+                        <span class="tag">Next.js</span>
+                        <span class="tag">Supabase</span>
+                        <span class="tag">MapLibre GL</span>
+                        <span class="tag">n8n</span>
+                        <span class="tag">Postgres RLS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Body -->
+        <section class="section section--padded-xl section--secondary-bg">
+            <div class="container">
+                <div class="case-section">
+                    <h2 class="section-title">Problem</h2>
+                    <p>Crowdsourced map platforms like Waze rely on unpaid volunteer labor. GroundTruth's premise: actually pay contributors for verified real-world map changes, motivated by giving people a legitimate way to earn money from that effort.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="section-title">Approach</h2>
+                    <p>The project moved through a full brainstorm, architecture pass, and MVP-scoping process before any build — documented as specs in the source repo — landing on a friends-only, points-based pilot with no real money and no KYC, to validate the core report-then-verify loop before adding payouts.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="section-title">What was built</h2>
+                    <p>GroundTruth is a Next.js 16 + Supabase + MapLibre GL map application. A user submits a report, n8n auto-assigns a verification task to a random eligible friend, that friend verifies it true or false, and both users earn points. Points logic and verification were moved server-side after a security review caught two separate client-side forgery vulnerabilities. Performance work included eliminating unnecessary full map re-renders on every data refresh and adding missing database indexes.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="section-title">Outcome</h2>
+                    <p>The pilot is live at <strong>groundtruth-pilot.vercel.app</strong>. It has been security-hardened — including a storage-bucket upload vulnerability that was found and fixed via a scoped migration — and is currently tracking report volume and verification rate as evidence for a future funded phase.</p>
+                </div>
+
+                <a href="../work.html" class="btn back-link">&larr; Back to Work</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Edgar Pineda. Built for precision.</p>
+            <div class="footer-meta">
+                <a href="mailto:epineda813@gmail.com" class="footer-link">Email</a>
+                <a href="https://github.com/recca813" class="footer-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

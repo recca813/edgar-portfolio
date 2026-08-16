@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludex-GG | Edgar Pineda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Sora:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="container nav-bar__row">
+            <a href="../" class="logo">EP_SYSTEMS</a>
+            <div class="nav-links">
+                <a href="../work.html" class="active">Work</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Case Study Hero -->
+        <section class="hero section section--padded-xl">
+            <div class="container">
+                <div class="case-hero">
+                    <h1 class="case-title">Ludex-GG</h1>
+                    <p class="case-subtitle">A gaming deals & news aggregator — static SPA, Supabase-backed, with a daily n8n content pipeline.</p>
+                    <div class="tags">
+                        <span class="tag">Supabase</span>
+                        <span class="tag">n8n</span>
+                        <span class="tag">Vercel</span>
+                        <span class="tag">SEO</span>
+                        <span class="tag">Vanilla JS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Body -->
+        <section class="section section--padded-xl section--secondary-bg">
+            <div class="container">
+                <div class="case-section">
+                    <h2 class="section-title">Problem</h2>
+                    <p>Gaming deal-hunters need a fast, current aggregator of price drops and news without visiting a dozen separate sites.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="section-title">Approach</h2>
+                    <p>To keep hosting and maintenance trivial, Ludex-GG is built as a static single-file SPA using client-side hash routing — no backend required for the frontend itself. Supabase serves as a lightweight, read-only data layer accessed via a scoped anon key, with row-level security controlling what the client can see.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="section-title">What was built</h2>
+                    <p>The site is a single <code>index.html</code> SPA that queries a Supabase <code>posts</code> table holding both deals and news. A daily n8n workflow keeps that table current: it pulls CheapShark's deals API alongside RSS feeds from PCGamer, Eurogamer, and Rock Paper Shotgun, then upserts new entries using a service-role key. On top of that sits an SEO baseline — canonical tags, Open Graph and Twitter meta, JSON-LD structured data, a sitemap, and a generated OG image.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="section-title">Outcome</h2>
+                    <p>Ludex-GG is live in production at <strong>ludex-gg.com</strong> on Vercel. One known scope limit: because routing is hash-based, individual posts aren't independently indexable by search engines — a tradeoff accepted deliberately as part of a "quick wins only" SEO pass rather than a larger routing rework.</p>
+                </div>
+
+                <a href="../work.html" class="btn back-link">&larr; Back to Work</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Edgar Pineda. Built for precision.</p>
+            <div class="footer-meta">
+                <a href="mailto:epineda813@gmail.com" class="footer-link">Email</a>
+                <a href="https://github.com/recca813" class="footer-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
