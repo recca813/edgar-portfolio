@@ -79,6 +79,10 @@ a:hover {
   gap: var(--spacing-lg);
 }
 
+.nav-links a.active {
+  color: var(--accent);
+}
+
 /* Footer */
 .footer {
   padding: var(--spacing-xl) 0;
