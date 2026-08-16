@@ -191,6 +191,10 @@ a:hover {
   margin-bottom: var(--spacing-sm);
 }
 
+.cv-date {
+  margin-bottom: var(--spacing-sm);
+}
+
 /* Case study pages */
 .case-hero {
   max-width: 800px;
