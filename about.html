@@ -31,13 +31,14 @@
         <section class="hero section section--padded-xl">
             <div class="container">
                 <div class="hero-content case-hero">
+                    <span class="kicker">// profile</span>
                     <h1 class="case-title">About Edgar</h1>
                     <p class="case-subtitle">Agentic AI &amp; Workflow Automation Engineer, Dubai, UAE</p>
                 </div>
 
                 <div class="case-section">
-                    <p>I build systems that run without me in the room. That's the through-line across trading automation, n8n pipelines, and the products I've built: an MQL5 Expert Advisor that reacts to fills at 2am, an n8n workflow that scrapes and filters job listings every morning before I'm awake, a local voice assistant that answers questions against my own notes without touching the internet. If it needs a human to babysit it, I don't consider it finished.</p>
-                    <p>I work by building the real thing fast and iterating from what breaks, rather than spending weeks on upfront specs. Most of what's in the Work section started as a rough version that shipped, then got rebuilt once or twice as I found the actual failure modes &mdash; a webhook that needed retry logic, a repaint bug in a TradingView indicator, an error branch a workflow didn't have yet. I'd rather have a working system with known rough edges than a polished plan that hasn't met production.</p>
+                    <p>I build things that keep working without me watching them. A trading bot that reacts while I'm asleep. A workflow that finds job listings every morning before I wake up. A voice assistant that answers questions using my own notes, no internet needed. If I still have to babysit it, it's not done.</p>
+                    <p>I like building the real thing fast, then fixing what breaks &mdash; instead of planning for weeks first. Most of my projects started rough and got better once I saw what actually went wrong. I'd rather ship something useful with a few rough edges than sit on a perfect plan that's never been tested.</p>
                     <p>Outside of client and personal projects, I spend a lot of time on trading systems &mdash; Pine Script indicators, MT5 EAs, and the automation that connects them to Discord and a trade journal &mdash; and on running a fully local AI voice pipeline (llama.cpp, RAG over my own Markdown vault, local TTS) mostly because I wanted to see how far "no cloud dependency" could go. Both are the kind of side projects that turn into real infrastructure because I actually use them daily.</p>
                 </div>
             </div>
@@ -88,8 +89,8 @@
                 <div class="cards-grid">
 
                     <div class="card">
-                        <h3 class="card-title">Ludex Content Feed</h3>
-                        <p class="card-body">Automated gaming news and deals site: an n8n pipeline pulls CheapShark deals and RSS feeds every 6 hours, summarizes each article with Google Gemini Flash-Lite, and upserts results into Supabase for a public Vercel front end.</p>
+                        <h3 class="card-title">Ludex GG</h3>
+                        <p class="card-body">Gaming deals and news site: an n8n pipeline pulls CheapShark deals and RSS feeds every 6 hours, summarizes each article with Google Gemini Flash-Lite, and upserts results into Supabase for a public Vercel front end.</p>
                         <div class="tags">
                             <span class="tag">n8n</span>
                             <span class="tag">Supabase</span>
@@ -98,6 +99,29 @@
                             <span class="tag">Google Gemini</span>
                             <span class="tag">Vercel</span>
                             <span class="tag">React</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">GroundTruth</h3>
+                        <p class="card-body">A Waze-like map app that pays contributors for verified real-world map changes. Next.js 16 + Supabase + MapLibre GL, currently a friends-only points-based pilot validating the report-then-verify loop before real payouts.</p>
+                        <div class="tags">
+                            <span class="tag">Next.js</span>
+                            <span class="tag">Supabase</span>
+                            <span class="tag">MapLibre GL</span>
+                            <span class="tag">n8n</span>
+                            <span class="tag">Postgres RLS</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">Trade Journal SaaS</h3>
+                        <p class="card-body">A hosted, multi-tenant trade journal for MT5 traders. An MT5 Expert Advisor posts trade events directly via webhook; the dashboard covers closed P&amp;L and win-rate stats, CSV export, and a trade calendar.</p>
+                        <div class="tags">
+                            <span class="tag">Next.js</span>
+                            <span class="tag">Supabase</span>
+                            <span class="tag">MetaTrader/MQL5</span>
+                            <span class="tag">Webhooks</span>
                         </div>
                     </div>
 

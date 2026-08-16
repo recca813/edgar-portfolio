@@ -31,6 +31,7 @@
         <section class="hero section section--padded-xl">
             <div class="container">
                 <div class="case-hero">
+                    <span class="kicker">// case_study / 01</span>
                     <h1 class="case-title">Ludex-GG</h1>
                     <p class="case-subtitle">A gaming deals & news aggregator — static SPA, Supabase-backed, with a daily n8n content pipeline.</p>
                     <div class="tags">
@@ -48,22 +49,22 @@
         <section class="section section--padded-xl section--secondary-bg">
             <div class="container">
                 <div class="case-section">
-                    <h2 class="section-title">Problem</h2>
+                    <h2 class="case-heading">01 / Problem</h2>
                     <p>Gaming deal-hunters need a fast, current aggregator of price drops and news without visiting a dozen separate sites.</p>
                 </div>
 
                 <div class="case-section">
-                    <h2 class="section-title">Approach</h2>
+                    <h2 class="case-heading">02 / Approach</h2>
                     <p>To keep hosting and maintenance trivial, Ludex-GG is built as a static single-file SPA using client-side hash routing — no backend required for the frontend itself. Supabase serves as a lightweight, read-only data layer accessed via a scoped anon key, with row-level security controlling what the client can see.</p>
                 </div>
 
                 <div class="case-section">
-                    <h2 class="section-title">What was built</h2>
+                    <h2 class="case-heading">03 / What Was Built</h2>
                     <p>The site is a single <code>index.html</code> SPA that queries a Supabase <code>posts</code> table holding both deals and news. A daily n8n workflow keeps that table current: it pulls CheapShark's deals API alongside RSS feeds from PCGamer, Eurogamer, and Rock Paper Shotgun, then upserts new entries using a service-role key. On top of that sits an SEO baseline — canonical tags, Open Graph and Twitter meta, JSON-LD structured data, a sitemap, and a generated OG image.</p>
                 </div>
 
                 <div class="case-section">
-                    <h2 class="section-title">Outcome</h2>
+                    <h2 class="case-heading">04 / Outcome</h2>
                     <p>Ludex-GG is live in production at <strong>ludex-gg.com</strong> on Vercel. One known scope limit: because routing is hash-based, individual posts aren't independently indexable by search engines — a tradeoff accepted deliberately as part of a "quick wins only" SEO pass rather than a larger routing rework.</p>
                 </div>
 

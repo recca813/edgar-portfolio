@@ -31,6 +31,7 @@
         <section class="hero section section--padded-xl">
             <div class="container">
                 <div class="case-hero">
+                    <span class="kicker">// case_study / 04</span>
                     <h1 class="case-title">Trading & Automation Systems</h1>
                     <p class="case-subtitle">Signal detection, execution, and orchestration automated end-to-end across TradingView, MetaTrader, and n8n.</p>
                     <div class="tags">
@@ -48,22 +49,22 @@
         <section class="section section--padded-xl section--secondary-bg">
             <div class="container">
                 <div class="case-section">
-                    <h2 class="section-title">Problem</h2>
+                    <h2 class="case-heading">01 / Problem</h2>
                     <p>Manual trading workflows — order execution, trade logging, market-structure analysis — are slow and error-prone at the frequency active trading requires.</p>
                 </div>
 
                 <div class="case-section">
-                    <h2 class="section-title">Approach</h2>
+                    <h2 class="case-heading">02 / Approach</h2>
                     <p>The fix was automating the whole loop: signal detection via Pine Script indicators on TradingView, execution and notification via MQL5 Expert Advisors, and orchestration via n8n workflows relaying events to Discord and other systems — plus a local monitoring dashboard to see all of it running in one place.</p>
                 </div>
 
                 <div class="case-section">
-                    <h2 class="section-title">What was built</h2>
+                    <h2 class="case-heading">03 / What Was Built</h2>
                     <p>Pine Script v6 indicators handle multi-timeframe market-structure analysis on TradingView. MetaTrader Expert Advisors include a Discord trade notifier that posts entries, order placements, and modifications via <code>OnTradeTransaction</code>, and a multi-pair sweep-and-engulf scanner feeding a live n8n relay. An n8n instance orchestrates the webhook-driven workflows connecting all of it, and a Next.js local dashboard surfaces workflow health, trade journal data, market scanner output, and infra status in one view.</p>
                 </div>
 
                 <div class="case-section">
-                    <h2 class="section-title">Outcome</h2>
+                    <h2 class="case-heading">04 / Outcome</h2>
                     <p>This is an actively used, running system, not a one-off demo — the dashboard and EAs run continuously, and workflows go through a standing validate-then-test process before activation.</p>
                 </div>
 

@@ -31,6 +31,7 @@
         <section class="hero section section--padded-xl">
             <div class="container">
                 <div class="case-hero">
+                    <span class="kicker">// case_study / 03</span>
                     <h1 class="case-title">Trade Journal SaaS</h1>
                     <p class="case-subtitle">A hosted, multi-tenant trade journal for MT5 traders, fed directly from the platform via webhook.</p>
                     <div class="tags">
@@ -48,22 +49,22 @@
         <section class="section section--padded-xl section--secondary-bg">
             <div class="container">
                 <div class="case-section">
-                    <h2 class="section-title">Problem</h2>
+                    <h2 class="case-heading">01 / Problem</h2>
                     <p>MT5 traders have no hosted, multi-tenant way to journal and analyze closed trades without manually exporting and reformatting broker data.</p>
                 </div>
 
                 <div class="case-section">
-                    <h2 class="section-title">Approach</h2>
+                    <h2 class="case-heading">02 / Approach</h2>
                     <p>A MetaTrader Expert Advisor posts trade events directly from the platform to a webhook, removing manual export entirely. Multi-tenancy runs through Supabase row-level security, so each trader's data stays isolated on one shared deployment.</p>
                 </div>
 
                 <div class="case-section">
-                    <h2 class="section-title">What was built</h2>
+                    <h2 class="case-heading">03 / What Was Built</h2>
                     <p>The app is a Next.js 16 App Router project on a Supabase Postgres/Auth/RLS backend. An MT5 EA posts trade events — filtered to closed positions by default — to a webhook route secured with a shared-secret header. The dashboard covers closed P&amp;L and win-rate stat tiles, timezone/symbol/side/date filters, CSV export, a win/loss trade calendar, and a getting-started onboarding flow (desktop or VPS MT5 required — no mobile support).</p>
                 </div>
 
                 <div class="case-section">
-                    <h2 class="section-title">Outcome</h2>
+                    <h2 class="case-heading">04 / Outcome</h2>
                     <p>Live at <strong>app.ludex-gg.com</strong>.</p>
                 </div>
 

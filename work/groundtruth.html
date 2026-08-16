@@ -31,6 +31,7 @@
         <section class="hero section section--padded-xl">
             <div class="container">
                 <div class="case-hero">
+                    <span class="kicker">// case_study / 02</span>
                     <h1 class="case-title">GroundTruth</h1>
                     <p class="case-subtitle">A Waze-like map app that pays contributors for verified real-world map changes.</p>
                     <div class="tags">
@@ -48,22 +49,22 @@
         <section class="section section--padded-xl section--secondary-bg">
             <div class="container">
                 <div class="case-section">
-                    <h2 class="section-title">Problem</h2>
+                    <h2 class="case-heading">01 / Problem</h2>
                     <p>Crowdsourced map platforms like Waze rely on unpaid volunteer labor. GroundTruth's premise: actually pay contributors for verified real-world map changes, motivated by giving people a legitimate way to earn money from that effort.</p>
                 </div>
 
                 <div class="case-section">
-                    <h2 class="section-title">Approach</h2>
+                    <h2 class="case-heading">02 / Approach</h2>
                     <p>The project moved through a full brainstorm, architecture pass, and MVP-scoping process before any build — documented as specs in the source repo — landing on a friends-only, points-based pilot with no real money and no KYC, to validate the core report-then-verify loop before adding payouts.</p>
                 </div>
 
                 <div class="case-section">
-                    <h2 class="section-title">What was built</h2>
+                    <h2 class="case-heading">03 / What Was Built</h2>
                     <p>GroundTruth is a Next.js 16 + Supabase + MapLibre GL map application. A user submits a report, n8n auto-assigns a verification task to a random eligible friend, that friend verifies it true or false, and both users earn points. Points logic and verification were moved server-side after a security review caught two separate client-side forgery vulnerabilities. Performance work included eliminating unnecessary full map re-renders on every data refresh and adding missing database indexes.</p>
                 </div>
 
                 <div class="case-section">
-                    <h2 class="section-title">Outcome</h2>
+                    <h2 class="case-heading">04 / Outcome</h2>
                     <p>The pilot is live at <strong>groundtruth-pilot.vercel.app</strong>. It has been security-hardened — including a storage-bucket upload vulnerability that was found and fixed via a scoped migration — and is currently tracking report volume and verification rate as evidence for a future funded phase.</p>
                 </div>
 

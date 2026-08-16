@@ -1,11 +1,10 @@
 :root {
-  /* Color Palette (60-30-10 Rule) */
-  --bg-primary: #0f172a;       /* Deep Slate (60%) */
-  --bg-secondary: #1e293b;      /* Slate Blue (30%) */
-  --accent: #a78bfa;             /* Violet (10%) */
-  --text-primary: #f8fafc;      /* Off-white */
-  --text-secondary: #94a3b8;     /* Muted Gray */
-  --border: #334155;             /* Border/Divider */
+  --bg-primary: #16130f;
+  --bg-secondary: #211c15;
+  --accent: #a78bfa;
+  --text-primary: #f5f1ea;
+  --text-secondary: #a89f8f;
+  --border: #3a3226;
 
   /* Typography */
   --font-heading: 'Sora', sans-serif;
@@ -201,9 +200,30 @@ a:focus-visible, .btn:focus-visible {
   margin-bottom: var(--spacing-sm);
 }
 
+/* System kicker label — small monospace tag used site-wide to carry the
+   "systems" identity onto every page, not just the homepage */
+.kicker {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--spacing-sm);
+}
+
 /* Case study pages */
 .case-hero {
   max-width: 800px;
+}
+
+.case-heading {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--spacing-sm);
 }
 
 .case-title {
