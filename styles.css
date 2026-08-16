@@ -156,6 +156,21 @@ a:hover {
   margin-bottom: var(--spacing-md);
 }
 
+/* Tech tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
 /* CV */
 .cv-block {
   border-left: 4px solid var(--accent);
