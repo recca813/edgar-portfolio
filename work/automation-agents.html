@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent System Map | Edgar Pineda</title>
+    <meta name="description" content="How the multi-agent n8n workflow builder is wired: agents, the MCP servers and skills each one calls, and how they connect back to Claude.">
+    <meta property="og:title" content="Agent System Map | Edgar Pineda">
+    <meta property="og:description" content="How the multi-agent n8n workflow builder is wired: agents, the MCP servers and skills each one calls, and how they connect back to Claude.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Sora:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        :root {
+            --map-agent: #e0a458;
+            --map-mcp: #5b8dc4;
+            --map-skill: #8fae6b;
+        }
+
+        .map-section { padding-top: 0; }
+
+        .map-stage {
+            position: relative;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            padding: var(--spacing-md);
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 280px;
+            gap: var(--spacing-md);
+        }
+
+        .map-stage svg { width: 100%; height: auto; overflow: visible; }
+
+        .map-legend {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.04em;
+            margin-top: var(--spacing-sm);
+        }
+        .map-legend-item { display: flex; align-items: center; gap: 6px; }
+        .map-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+        .col-label { font-family: var(--font-body); font-size: 0.68rem; letter-spacing: 0.1em; fill: var(--text-secondary); }
+
+        .edge { fill: none; stroke-linecap: round; transition: opacity 0.35s ease, stroke-width 0.35s ease; }
+        .edge-hub   { stroke: var(--map-agent); stroke-opacity: 0.3; stroke-width: 1.4; }
+        .edge-mcp   { stroke: var(--map-mcp); stroke-opacity: 0.26; stroke-width: 1.2; }
+        .edge-skill { stroke: var(--map-skill); stroke-opacity: 0.26; stroke-width: 1.2; }
+
+        .node { cursor: pointer; }
+        .node circle.core { transition: filter 0.3s ease; }
+        .node:hover circle.core { filter: brightness(1.2); }
+        .node text { font-family: var(--font-body); font-size: 11px; fill: var(--text-primary); transition: opacity 0.35s ease; pointer-events: none; }
+        .node .sublabel { font-size: 8px; fill: var(--text-secondary); letter-spacing: 0.05em; text-transform: uppercase; }
+
+        .dim .edge { opacity: 0.05; }
+        .dim .particle { opacity: 0; }
+        .dim .node { opacity: 0.2; }
+        .dim .node.active, .dim .node.neighbor { opacity: 1; }
+        .dim .edge.active { opacity: 0.9; stroke-width: 2; }
+
+        .map-panel {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            min-height: 0;
+        }
+        .panel-type {
+            font-family: var(--font-body);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            width: fit-content;
+            padding: 3px 8px;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        .panel-type .dot { width: 6px; height: 6px; border-radius: 50%; }
+        .panel-title { font-family: var(--font-body); font-size: 1rem; font-weight: 700; color: var(--text-primary); margin: 0; word-break: break-word; }
+        .panel-desc { font-size: 0.85rem; line-height: 1.55; color: var(--text-secondary); margin: 0; }
+        .panel-links { margin-top: auto; padding-top: var(--spacing-sm); border-top: 1px solid var(--border); }
+        .panel-links-label { font-family: var(--font-body); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); margin: 0 0 6px; }
+        .link-chip { display: block; font-family: var(--font-body); font-size: 0.8rem; color: var(--text-primary); padding: 4px 0; border-bottom: 1px dashed var(--border); }
+        .link-chip:last-child { border-bottom: none; }
+        .reset-btn {
+            font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.05em;
+            background: none; border: 1px solid var(--border); color: var(--text-secondary);
+            padding: 6px 10px; cursor: pointer; align-self: flex-start;
+        }
+        .reset-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+        @media (max-width: 760px) {
+            .map-stage { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="container nav-bar__row">
+            <a href="../" class="logo" aria-label="Home">EP_SYSTEMS</a>
+            <div class="nav-links">
+                <a href="../work.html" class="active">Work</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero section section--padded-xl">
+            <div class="container">
+                <div class="case-hero">
+                    <span class="kicker">// case_study / 04 &mdash; agent map</span>
+                    <h1 class="case-title">Agent System Map</h1>
+                    <p class="case-subtitle">The n8n workflow builder isn't one script &mdash; it's a small roster of specialized agents, each scoped to its own tools. This is how they're wired.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section section section--padded-xl section--secondary-bg">
+            <div class="container">
+                <div class="case-section" style="max-width: 100%;">
+                    <h2 class="case-heading">01 / How to read it</h2>
+                    <p>You sit on the left. Six agents in the middle handle everything from auditing live workflows to logging session notes. On the right are the actual MCP servers and skills each agent depends on &mdash; when two agents share one, the lines converge on a single node. Click anything to trace its connections.</p>
+                </div>
+
+                <div class="map-stage">
+                    <svg id="stage-svg" viewBox="0 0 1450 900" role="img" aria-label="Left to right diagram of agents and their dependencies"></svg>
+                    <div class="map-panel" id="panel">
+                        <span class="panel-type" id="panel-type"><span class="dot"></span><span id="panel-type-label">Overview</span></span>
+                        <h3 class="panel-title" id="panel-title">You + Claude</h3>
+                        <p class="panel-desc" id="panel-desc">The main thread. You direct the work; Claude calls tools directly for small stuff, and dispatches these six agents for anything that benefits from its own protected context window.</p>
+                        <div class="panel-links" id="panel-links" style="display:none">
+                            <p class="panel-links-label">Connected to</p>
+                            <div id="panel-links-list"></div>
+                        </div>
+                        <button class="reset-btn" id="reset-btn" style="display:none">&larr; reset view</button>
+                    </div>
+                </div>
+                <div class="map-legend" id="legend"></div>
+
+                <a href="automation.html" class="btn back-link">&larr; Back to Trading &amp; Automation Systems</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Edgar Pineda. Built for precision.</p>
+            <div class="footer-meta">
+                <a href="mailto:epineda813@gmail.com" class="footer-link">Email</a>
+                <a href="https://github.com/recca813" class="footer-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <script src="../mailto-copy.js" defer></script>
+
+    <script>
+    (function () {
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var COL_HUB = 90, COL_AGENT = 600, COL_OUTER = 1180;
+
+        var COLORS = {
+            hub:   { core: '#a78bfa', glow: 'rgba(167,139,250,0.4)',  label: 'Hub' },
+            agent: { core: '#e0a458', glow: 'rgba(224,164,88,0.35)', label: 'Agent' },
+            mcp:   { core: '#5b8dc4', glow: 'rgba(91,141,196,0.35)', label: 'MCP Server' },
+            skill: { core: '#8fae6b', glow: 'rgba(143,174,107,0.35)', label: 'Skill / Tool' }
+        };
+
+        var nodes = [
+            { id: 'hub', type: 'hub', x: COL_HUB, y: 450, label: 'You + Claude',
+              desc: 'The main thread. You direct the work; Claude calls tools directly for small stuff, and dispatches these six agents for anything that benefits from its own protected context window.' },
+
+            { id: 'n8n-auditor', type: 'agent', x: COL_AGENT, y: 90, label: 'n8n-auditor',
+              desc: 'Read-only health auditor for n8n workflows. Checks validation, wiring integrity, error-routing completeness, and naming/credential conventions — never modifies anything.' },
+            { id: 'n8n-template-scout', type: 'agent', x: COL_AGENT, y: 230, label: 'n8n-template-scout',
+              desc: 'Read-only research scout. Given a build intent, returns a ranked shortlist of the best templates and node types with a one-line rationale each — never builds or modifies workflows.' },
+            { id: 'n8n-builder', type: 'agent', x: COL_AGENT, y: 370, label: 'n8n-builder',
+              desc: 'Builds n8n workflows inactive and validated. Creates or edits, auto-wires error handling on every fallible node, validates, and verifies wiring — then hands back a draft for a human to test and activate.' },
+            { id: 'workflow-card-designer', type: 'agent', x: COL_AGENT, y: 510, label: 'workflow-card-designer',
+              desc: 'Generates the one-page summary card for a finished n8n workflow in a fixed visual template, then publishes it as a shareable page.' },
+            { id: 'resume-drafter', type: 'agent', x: COL_AGENT, y: 650, label: 'resume-drafter',
+              desc: 'Drafts, updates, and syncs my CV/resume/portfolio content across the Google Doc source of truth and its Obsidian mirror — real content, no placeholders.' },
+            { id: 'obsidian-logger', type: 'agent', x: COL_AGENT, y: 790, label: 'obsidian-logger',
+              desc: 'Logs project events into the Obsidian vault per the mandatory logging convention — creates or updates notes, links them into the index, and cross-links related notes.' },
+
+            { id: 'n8n-mcp', type: 'mcp', x: COL_OUTER, y: 230, label: 'n8n-mcp',
+              desc: 'MCP server wrapping the local n8n instance, tunneled for webhooks. Exposes workflow search, validation, creation, and execution tools. Shared by all three n8n agents.' },
+            { id: 'production-workflow-checklist', type: 'skill', x: COL_OUTER, y: 370, label: 'production-workflow-checklist',
+              desc: 'Pre-flight checklist run before any write to an active n8n workflow — enforces "never edit production directly, always copy first" with concrete steps instead of relying on memory.' },
+            { id: 'publish-tool', type: 'skill', x: COL_OUTER, y: 510, label: 'Publish (shareable page)',
+              desc: 'Publishes a private, shareable web page — used here to hand back the finished workflow card as a visual, sharable deliverable.' },
+            { id: 'google-docs-mcp', type: 'mcp', x: COL_OUTER, y: 620, label: 'google-docs',
+              desc: 'MCP server for Google Docs, Sheets, Gmail, and Calendar. Used for direct edits to the CV Google Doc — the source of truth in the four-location sync.' },
+            { id: 'obsidian-mcp', type: 'mcp', x: COL_OUTER, y: 720, label: 'obsidian',
+              desc: 'MCP server over Obsidian\'s Local REST API plugin. Exposes vault read/write, search, and note-patching tools. Shared by the logger and the resume drafter.' },
+            { id: 'obsidian-markdown', type: 'skill', x: COL_OUTER, y: 830, label: 'obsidian-markdown',
+              desc: 'Reference for Obsidian-flavored Markdown syntax — wikilinks, callouts, frontmatter — so every logged note stays syntactically correct.' }
+        ];
+
+        var edges = [
+            ['hub', 'n8n-auditor'], ['hub', 'n8n-template-scout'], ['hub', 'n8n-builder'],
+            ['hub', 'workflow-card-designer'], ['hub', 'resume-drafter'], ['hub', 'obsidian-logger'],
+            ['n8n-auditor', 'n8n-mcp'], ['n8n-template-scout', 'n8n-mcp'], ['n8n-builder', 'n8n-mcp'],
+            ['n8n-builder', 'production-workflow-checklist'],
+            ['workflow-card-designer', 'publish-tool'],
+            ['resume-drafter', 'google-docs-mcp'], ['resume-drafter', 'obsidian-mcp'],
+            ['obsidian-logger', 'obsidian-mcp'], ['obsidian-logger', 'obsidian-markdown']
+        ];
+
+        var byId = {};
+        nodes.forEach(function (n) { byId[n.id] = n; });
+
+        var adjacency = {};
+        nodes.forEach(function (n) { adjacency[n.id] = new Set([n.id]); });
+        edges.forEach(function (e) { adjacency[e[0]].add(e[1]); adjacency[e[1]].add(e[0]); });
+
+        var svg = document.getElementById('stage-svg');
+        var svgNS = 'http://www.w3.org/2000/svg';
+        function el(tag, attrs) { var e = document.createElementNS(svgNS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+
+        var colLayer = el('g');
+        [['YOU', COL_HUB], ['AGENTS', COL_AGENT], ['MCP SERVERS / SKILLS', COL_OUTER]].forEach(function (c) {
+            var t = el('text', { x: c[1], y: 34, 'text-anchor': 'middle', class: 'col-label' });
+            t.textContent = c[0];
+            colLayer.appendChild(t);
+        });
+        svg.appendChild(colLayer);
+
+        var edgeLayer = el('g'), particleLayer = el('g'), nodeLayer = el('g');
+        svg.appendChild(edgeLayer); svg.appendChild(particleLayer); svg.appendChild(nodeLayer);
+
+        edges.forEach(function (e, idx) {
+            var a = byId[e[0]], b = byId[e[1]];
+            var pathId = 'edge-' + idx;
+            var cls = a.type === 'hub' || b.type === 'hub' ? 'edge-hub' : (a.type === 'mcp' || b.type === 'mcp' ? 'edge-mcp' : 'edge-skill');
+            var midX = (a.x + b.x) / 2;
+            var d = 'M ' + a.x + ' ' + a.y + ' C ' + midX + ' ' + a.y + ' ' + midX + ' ' + b.y + ' ' + b.x + ' ' + b.y;
+            var path = el('path', { id: pathId, class: 'edge ' + cls, d: d, 'data-a': e[0], 'data-b': e[1] });
+            edgeLayer.appendChild(path);
+
+            if (!reduceMotion) {
+                var color = a.type === 'mcp' || b.type === 'mcp' ? COLORS.mcp.core : (a.type === 'skill' || b.type === 'skill' ? COLORS.skill.core : COLORS.agent.core);
+                for (var p = 0; p < 2; p++) {
+                    var particle = el('circle', { r: 2, fill: color, class: 'particle edge-' + idx });
+                    var anim = el('animateMotion', { dur: (5 + Math.random() * 2.5).toFixed(1) + 's', repeatCount: 'indefinite', begin: (-p * 3).toFixed(1) + 's' });
+                    var mpath = el('mpath');
+                    mpath.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#' + pathId);
+                    anim.appendChild(mpath); particle.appendChild(anim);
+                    particleLayer.appendChild(particle);
+                }
+            }
+        });
+
+        nodes.forEach(function (n) {
+            var c = COLORS[n.type];
+            var group = el('g', { class: 'node', 'data-id': n.id, tabindex: '0' });
+            var coreR = n.type === 'hub' ? 28 : (n.type === 'agent' ? 18 : 13);
+
+            group.appendChild(el('circle', { cx: n.x, cy: n.y, r: coreR + 9, fill: c.glow, opacity: 0.3 }));
+            group.appendChild(el('circle', { cx: n.x, cy: n.y, r: coreR, fill: c.core, class: 'core' }));
+            group.appendChild(el('circle', { cx: n.x, cy: n.y, r: coreR + 4, fill: 'none', stroke: c.core, 'stroke-opacity': 0.4 }));
+
+            var anchor = n.type === 'hub' ? 'middle' : 'start';
+            var lx = n.type === 'hub' ? n.x : n.x + coreR + 10;
+            var ly = n.type === 'hub' ? n.y + coreR + 20 : n.y + 4;
+
+            var sub = el('text', { x: lx, y: ly - 12, 'text-anchor': anchor, class: 'sublabel' });
+            sub.textContent = c.label;
+            group.appendChild(sub);
+            var text = el('text', { x: lx, y: ly, 'text-anchor': anchor });
+            text.textContent = n.label;
+            group.appendChild(text);
+
+            group.addEventListener('click', function () { focusNode(n.id); });
+            group.addEventListener('keypress', function (ev) { if (ev.key === 'Enter') focusNode(n.id); });
+            nodeLayer.appendChild(group);
+        });
+
+        var legend = document.getElementById('legend');
+        Object.keys(COLORS).forEach(function (k) {
+            var item = document.createElement('div'); item.className = 'map-legend-item';
+            var dot = document.createElement('span'); dot.className = 'map-legend-dot'; dot.style.background = COLORS[k].core;
+            item.appendChild(dot);
+            var lbl = document.createElement('span'); lbl.textContent = COLORS[k].label;
+            item.appendChild(lbl);
+            legend.appendChild(item);
+        });
+
+        var panelType = document.getElementById('panel-type-label');
+        var panelTypeDot = document.querySelector('#panel-type .dot');
+        var panelTitle = document.getElementById('panel-title');
+        var panelDesc = document.getElementById('panel-desc');
+        var panelLinks = document.getElementById('panel-links');
+        var panelLinksList = document.getElementById('panel-links-list');
+        var resetBtn = document.getElementById('reset-btn');
+
+        function focusNode(id) {
+            var n = byId[id]; var connected = adjacency[id];
+            svg.classList.add('dim');
+            nodeLayer.querySelectorAll('.node').forEach(function (g) {
+                var nid = g.getAttribute('data-id');
+                g.classList.toggle('active', nid === id);
+                g.classList.toggle('neighbor', connected.has(nid) && nid !== id);
+            });
+            edgeLayer.querySelectorAll('.edge').forEach(function (p) {
+                p.classList.toggle('active', connected.has(p.getAttribute('data-a')) && connected.has(p.getAttribute('data-b')));
+            });
+            particleLayer.querySelectorAll('.particle').forEach(function (pt) {
+                var idxCls = Array.from(pt.classList).find(function (c) { return c.indexOf('edge-') === 0; });
+                var edgeEl = idxCls && document.getElementById(idxCls);
+                pt.style.opacity = edgeEl && edgeEl.classList.contains('active') ? 1 : 0;
+            });
+            panelType.textContent = COLORS[n.type].label;
+            panelTypeDot.style.background = COLORS[n.type].core;
+            panelTitle.textContent = n.label;
+            panelDesc.textContent = n.desc;
+            var links = Array.from(connected).filter(function (x) { return x !== id; });
+            if (links.length) {
+                panelLinks.style.display = 'block'; panelLinksList.innerHTML = '';
+                links.forEach(function (lid) {
+                    var chip = document.createElement('span'); chip.className = 'link-chip'; chip.textContent = byId[lid].label;
+                    panelLinksList.appendChild(chip);
+                });
+            } else { panelLinks.style.display = 'none'; }
+            resetBtn.style.display = 'inline-block';
+        }
+
+        function resetView() {
+            svg.classList.remove('dim');
+            nodeLayer.querySelectorAll('.node').forEach(function (g) { g.classList.remove('active', 'neighbor'); });
+            edgeLayer.querySelectorAll('.edge').forEach(function (p) { p.classList.remove('active'); });
+            particleLayer.querySelectorAll('.particle').forEach(function (pt) { pt.style.opacity = ''; });
+            panelType.textContent = 'Overview'; panelTypeDot.style.background = COLORS.hub.core;
+            panelTitle.textContent = 'You + Claude';
+            panelDesc.textContent = 'The main thread. You direct the work; Claude calls tools directly for small stuff, and dispatches these six agents for anything that benefits from its own protected context window.';
+            panelLinks.style.display = 'none'; resetBtn.style.display = 'none';
+        }
+
+        resetBtn.addEventListener('click', resetView);
+    })();
+    </script>
+</body>
+</html>
