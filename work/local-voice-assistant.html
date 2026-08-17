@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local AI Voice Assistant | Edgar Pineda</title>
+    <meta name="description" content="Case study: an offline-first voice assistant running entirely on local hardware, answering questions over a personal Markdown knowledge base with local speech-to-text and text-to-speech.">
+    <meta property="og:title" content="Local AI Voice Assistant | Edgar Pineda">
+    <meta property="og:description" content="Case study: an offline-first voice assistant running entirely on local hardware, answering questions over a personal Markdown knowledge base with local speech-to-text and text-to-speech.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Sora:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="container nav-bar__row">
+            <a href="../" class="logo" aria-label="Home">EP_SYSTEMS</a>
+            <div class="nav-links">
+                <a href="../work.html" class="active">Work</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Case Study Hero -->
+        <section class="hero section section--padded-xl">
+            <div class="container">
+                <div class="case-hero">
+                    <span class="kicker">// case_study / 07</span>
+                    <h1 class="case-title">Local AI Voice Assistant</h1>
+                    <p class="case-subtitle">Push-to-talk, answered by a model running on your own hardware, over your own notes &mdash; no internet required.</p>
+                    <div class="tags">
+                        <span class="tag">llama.cpp</span>
+                        <span class="tag">Gemma</span>
+                        <span class="tag">faster-whisper</span>
+                        <span class="tag">Kokoro TTS</span>
+                        <span class="tag">Next.js</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Docker</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Body -->
+        <section class="section section--padded-xl section--secondary-bg">
+            <div class="container">
+                <div class="case-section">
+                    <h2 class="case-heading">01 / Problem</h2>
+                    <p>Cloud voice assistants mean sending every question, and often personal notes as context, to a third-party API. That's a hard tradeoff for something meant to answer questions from a personal knowledge base &mdash; and it stops working the moment the connection does.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="case-heading">02 / Approach</h2>
+                    <p>Built the whole loop &mdash; listening, thinking, and speaking &mdash; to run locally by default, with cloud APIs wired in only as a fallback if a local service is down, not as the primary path. The goal was to see how far "no cloud dependency" could actually go for a real, daily-use assistant.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="case-heading">03 / What Was Built</h2>
+                    <p>A push-to-talk voice assistant where speech is captured and transcribed locally with faster-whisper, then answered by a Gemma 4 12B model served locally via llama.cpp, using a personal Markdown vault as its knowledge base for retrieval-augmented answers. Replies are spoken aloud through Kokoro, a local neural TTS engine, with no round trip to a cloud model required for a normal question. Cloud APIs (a hosted LLM, a hosted TTS service) are wired in as fallback only, triggered if a local service's health check fails, so the assistant keeps answering even if a local component goes down &mdash; just not fully offline in that moment.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="case-heading">04 / Outcome</h2>
+                    <p>A working, daily-use voice assistant with no hard dependency on an internet connection or a third party seeing personal notes to answer a question.</p>
+                </div>
+
+                <a href="../work.html" class="btn back-link">&larr; Back to Work</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Edgar Pineda. Built for precision.</p>
+            <div class="footer-meta">
+                <a href="mailto:epineda813@gmail.com" class="footer-link">Email</a>
+                <a href="https://github.com/recca813" class="footer-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <script src="../mailto-copy.js" defer></script>
+</body>
+</html>

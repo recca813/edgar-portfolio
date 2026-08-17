@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Transcription and Translation Pipeline | Edgar Pineda</title>
+    <meta name="description" content="Case study: a dual-input n8n automation that transcribes, translates, and captions video content, then writes final output to Google Docs.">
+    <meta property="og:title" content="Video Transcription and Translation Pipeline | Edgar Pineda">
+    <meta property="og:description" content="Case study: a dual-input n8n automation that transcribes, translates, and captions video content, then writes final output to Google Docs.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Sora:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="container nav-bar__row">
+            <a href="../" class="logo" aria-label="Home">EP_SYSTEMS</a>
+            <div class="nav-links">
+                <a href="../work.html" class="active">Work</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Case Study Hero -->
+        <section class="hero section section--padded-xl">
+            <div class="container">
+                <div class="case-hero">
+                    <span class="kicker">// case_study / 06</span>
+                    <h1 class="case-title">Video Transcription and Translation Pipeline</h1>
+                    <p class="case-subtitle">Drop in a video from either direction &mdash; a Drive folder or a YouTube link &mdash; and get captions, a translation, and a summary back in Docs.</p>
+                    <div class="tags">
+                        <span class="tag">n8n</span>
+                        <span class="tag">OpenAI Whisper</span>
+                        <span class="tag">Google Cloud TTS</span>
+                        <span class="tag">Creatomate</span>
+                        <span class="tag">Google Docs API</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Body -->
+        <section class="section section--padded-xl section--secondary-bg">
+            <div class="container">
+                <div class="case-section">
+                    <h2 class="case-heading">01 / Problem</h2>
+                    <p>Turning raw video into captioned, translated, summarized output normally means juggling separate tools for transcription, translation, subtitle timing, and write-up &mdash; and doing it by hand for every new video, regardless of where that video came from.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="case-heading">02 / Approach</h2>
+                    <p>Rather than force every video through one intake method, the workflow accepts either a Google Drive folder watch or a submitted YouTube URL as the trigger, then converges both paths into the same processing pipeline &mdash; so the input source doesn't change the output quality or format.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="case-heading">03 / What Was Built</h2>
+                    <p>An n8n workflow with two entry points &mdash; a watched Google Drive folder and a YouTube URL submission form &mdash; both feeding into a shared pipeline: OpenAI Whisper transcribes the audio, the transcript is translated, and Creatomate generates auto-synced captions timed to the video. Google Cloud TTS handles spoken output where a voiced version of the translation is needed. The final transcript, translation, and summary are written to Google Docs via the Docs API as the delivered artifact.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="case-heading">04 / Outcome</h2>
+                    <p>One pipeline handles video intake from two different sources and delivers a captioned, translated, summarized Doc without manual editing at any step in between.</p>
+                </div>
+
+                <a href="../work.html" class="btn back-link">&larr; Back to Work</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Edgar Pineda. Built for precision.</p>
+            <div class="footer-meta">
+                <a href="mailto:epineda813@gmail.com" class="footer-link">Email</a>
+                <a href="https://github.com/recca813" class="footer-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <script src="../mailto-copy.js" defer></script>
+</body>
+</html>

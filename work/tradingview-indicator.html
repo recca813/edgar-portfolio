@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Timeframe TradingView Indicator | Edgar Pineda</title>
+    <meta name="description" content="Case study: a multi-timeframe market-structure indicator for TradingView with a live on-chart dashboard, repaint fixes, and wick-based invalidation logic.">
+    <meta property="og:title" content="Multi-Timeframe TradingView Indicator | Edgar Pineda">
+    <meta property="og:description" content="Case study: a multi-timeframe market-structure indicator for TradingView with a live on-chart dashboard, repaint fixes, and wick-based invalidation logic.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Sora:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="container nav-bar__row">
+            <a href="../" class="logo" aria-label="Home">EP_SYSTEMS</a>
+            <div class="nav-links">
+                <a href="../work.html" class="active">Work</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Case Study Hero -->
+        <section class="hero section section--padded-xl">
+            <div class="container">
+                <div class="case-hero">
+                    <span class="kicker">// case_study / 08</span>
+                    <h1 class="case-title">Multi-Timeframe TradingView Indicator</h1>
+                    <p class="case-subtitle">One chart, market structure from multiple timeframes, and setups that invalidate themselves the moment price proves them wrong.</p>
+                    <div class="tags">
+                        <span class="tag">Pine Script v6</span>
+                        <span class="tag">TradingView</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Body -->
+        <section class="section section--padded-xl section--secondary-bg">
+            <div class="container">
+                <div class="case-section">
+                    <h2 class="case-heading">01 / Problem</h2>
+                    <p>Reading market structure across multiple timeframes normally means flipping between charts and holding the higher-timeframe context in your head while watching the lower one &mdash; slow, and easy to get wrong under a moving market.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="case-heading">02 / Approach</h2>
+                    <p>Surface the higher-timeframe structure directly on the chart being traded, on a live dashboard, instead of requiring a second chart. Early versions of the indicator suffered from repainting &mdash; structure that looked valid in the past but wouldn't have triggered in real time &mdash; so fixing that came before adding new features.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="case-heading">03 / What Was Built</h2>
+                    <p>A Pine Script v6 indicator that tracks market structure across multiple timeframes and renders it as a live on-chart dashboard, so higher-timeframe context is visible without switching charts. Repaint issues in the structure detection were identified and resolved so what the indicator shows matches what would have actually triggered in real time. Invalidation logic was added on top: a setup automatically voids itself once price breaches a specific wick level, instead of staying marked valid past the point it no longer is.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="case-heading">04 / Outcome</h2>
+                    <p>A single-chart view of multi-timeframe structure that's accurate in real time, not just in hindsight, with setups that self-invalidate instead of needing to be manually tracked and dismissed.</p>
+                </div>
+
+                <a href="../work.html" class="btn back-link">&larr; Back to Work</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Edgar Pineda. Built for precision.</p>
+            <div class="footer-meta">
+                <a href="mailto:epineda813@gmail.com" class="footer-link">Email</a>
+                <a href="https://github.com/recca813" class="footer-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <script src="../mailto-copy.js" defer></script>
+</body>
+</html>

@@ -275,6 +275,13 @@ a:focus-visible, .btn:focus-visible {
   color: var(--bg-primary);
 }
 
+.cta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
 /* Mobile */
 @media (max-width: 720px) {
   :root {

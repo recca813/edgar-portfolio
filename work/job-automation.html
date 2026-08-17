@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Job Automation System | Edgar Pineda</title>
+    <meta name="description" content="Case study: a daily autonomous n8n workflow that scrapes job boards, filters listings with Google Gemini, and logs qualified results to Google Sheets.">
+    <meta property="og:title" content="Agentic Job Automation System | Edgar Pineda">
+    <meta property="og:description" content="Case study: a daily autonomous n8n workflow that scrapes job boards, filters listings with Google Gemini, and logs qualified results to Google Sheets.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Sora:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="container nav-bar__row">
+            <a href="../" class="logo" aria-label="Home">EP_SYSTEMS</a>
+            <div class="nav-links">
+                <a href="../work.html" class="active">Work</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Case Study Hero -->
+        <section class="hero section section--padded-xl">
+            <div class="container">
+                <div class="case-hero">
+                    <span class="kicker">// case_study / 05</span>
+                    <h1 class="case-title">Agentic Job Automation System</h1>
+                    <p class="case-subtitle">A daily autonomous workflow that finds and filters job listings before you're awake.</p>
+                    <div class="tags">
+                        <span class="tag">n8n</span>
+                        <span class="tag">Firecrawl</span>
+                        <span class="tag">Google Gemini</span>
+                        <span class="tag">Google Sheets API</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Body -->
+        <section class="section section--padded-xl section--secondary-bg">
+            <div class="container">
+                <div class="case-section">
+                    <h2 class="case-heading">01 / Problem</h2>
+                    <p>Manually checking job boards every day for relevant openings is slow and easy to fall behind on &mdash; especially when filtering for a narrow combination of role type (AI/automation) and location (Dubai or remote) across sites that don't share a common format.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="case-heading">02 / Approach</h2>
+                    <p>Rather than checking boards by hand, the workflow runs on a daily schedule and does the filtering itself: scrape first, then let an AI model make the relevance call instead of hand-written keyword rules, so a listing worded differently than expected doesn't slip through un-filtered.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="case-heading">03 / What Was Built</h2>
+                    <p>An n8n workflow scrapes job boards via Firecrawl on a daily schedule, then passes each listing to Google Gemini to judge relevance and location against a fixed profile (AI/automation roles, Dubai or remote) before anything gets logged. Listings that pass are appended to a shared Google Sheet as the single source of truth for the day's results. Every fallible step &mdash; the scrape, the AI filtering call, the sheet write &mdash; has its own retry and error-logging branch, so a bad scrape or an API hiccup doesn't silently drop a day's results.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2 class="case-heading">04 / Outcome</h2>
+                    <p>Runs unattended every day, turning a manual daily check across multiple sites into a single filtered list waiting in a spreadsheet each morning.</p>
+                </div>
+
+                <a href="../work.html" class="btn back-link">&larr; Back to Work</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Edgar Pineda. Built for precision.</p>
+            <div class="footer-meta">
+                <a href="mailto:epineda813@gmail.com" class="footer-link">Email</a>
+                <a href="https://github.com/recca813" class="footer-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <script src="../mailto-copy.js" defer></script>
+</body>
+</html>
