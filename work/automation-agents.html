@@ -34,6 +34,34 @@
 
         .map-stage svg { width: 100%; height: auto; overflow: visible; }
 
+        .map-stage:fullscreen {
+            width: 100vw;
+            height: 100vh;
+            padding: var(--spacing-xl);
+            align-items: center;
+        }
+        .map-stage:fullscreen svg { max-height: 82vh; }
+
+        .enlarge-btn {
+            position: absolute;
+            top: var(--spacing-sm);
+            right: var(--spacing-sm);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 6px 10px;
+            cursor: pointer;
+            z-index: 2;
+        }
+        .enlarge-btn:hover { color: var(--accent); border-color: var(--accent); }
+        .enlarge-btn svg { width: 12px; height: 12px; }
+
         .map-legend {
             display: flex;
             gap: var(--spacing-md);
@@ -133,7 +161,11 @@
                     <p>You sit on the left. Six agents in the middle handle everything from auditing live workflows to logging session notes. On the right are the actual MCP servers and skills each agent depends on &mdash; when two agents share one, the lines converge on a single node. Click anything to trace its connections.</p>
                 </div>
 
-                <div class="map-stage">
+                <div class="map-stage" id="map-stage">
+                    <button class="enlarge-btn" id="enlarge-btn" type="button" aria-label="Enlarge diagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                        <span id="enlarge-btn-label">Enlarge</span>
+                    </button>
                     <svg id="stage-svg" viewBox="0 0 1450 900" role="img" aria-label="Left to right diagram of agents and their dependencies"></svg>
                     <div class="map-panel" id="panel">
                         <span class="panel-type" id="panel-type"><span class="dot"></span><span id="panel-type-label">Overview</span></span>
@@ -166,6 +198,25 @@
 
     <script>
     (function () {
+        var stage = document.getElementById('map-stage');
+        var enlargeBtn = document.getElementById('enlarge-btn');
+        var enlargeLabel = document.getElementById('enlarge-btn-label');
+
+        if (stage.requestFullscreen) {
+            enlargeBtn.addEventListener('click', function () {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    stage.requestFullscreen();
+                }
+            });
+            document.addEventListener('fullscreenchange', function () {
+                enlargeLabel.textContent = document.fullscreenElement ? 'Exit' : 'Enlarge';
+            });
+        } else {
+            enlargeBtn.style.display = 'none';
+        }
+
         var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var COL_HUB = 90, COL_AGENT = 600, COL_OUTER = 1180;
 
