@@ -34,9 +34,37 @@
                     <h1 class="hero-title">Let's build something worth running.</h1>
                     <p class="hero-subtitle">
                         Open to automation, agentic AI, and full-stack product work.
-                        The fastest way to reach me is email &mdash; I read every message.
+                        Send a message below, book time directly, or email me &mdash; I read everything.
                     </p>
-                    <a href="mailto:epineda813@gmail.com" class="btn">Email epineda813@gmail.com</a>
+                    <div class="cta-row">
+                        <a href="mailto:epineda813@gmail.com" class="btn">Email epineda813@gmail.com</a>
+                        <a href="https://calendly.com/epineda813/30min" class="btn" target="_blank" rel="noopener">Book a call</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--padded-xl section--secondary-bg">
+            <div class="container">
+                <div class="contact-form-wrap">
+                    <span class="kicker">// send a message</span>
+                    <form id="contact-form" class="contact-form" action="https://formspree.io/f/xnpaoner" method="POST">
+                        <div class="form-field">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off">
+                        <button type="submit" class="btn">Send message</button>
+                        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+                    </form>
                 </div>
             </div>
         </section>
@@ -52,5 +80,6 @@
         </div>
     </footer>
     <script src="mailto-copy.js" defer></script>
+    <script src="contact-form.js" defer></script>
 </body>
 </html>
