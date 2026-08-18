@@ -286,7 +286,7 @@
         function el(tag, attrs) { var e = document.createElementNS(svgNS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
 
         var colLayer = el('g');
-        [['YOU', COL_HUB], ['AGENTS', COL_AGENT], ['MCP SERVERS / SKILLS', COL_OUTER]].forEach(function (c) {
+        [['ME', COL_HUB], ['AGENTS', COL_AGENT], ['MCP SERVERS / SKILLS', COL_OUTER]].forEach(function (c) {
             var t = el('text', { x: c[1], y: 34, 'text-anchor': 'middle', class: 'col-label' });
             t.textContent = c[0];
             colLayer.appendChild(t);
