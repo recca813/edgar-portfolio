@@ -69,6 +69,10 @@ a:focus-visible, .btn:focus-visible {
 
 /* Navigation */
 .nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--bg-primary);
   padding: var(--spacing-md) 0;
   border-bottom: 1px solid var(--border);
   display: flex;
