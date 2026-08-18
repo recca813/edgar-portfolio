@@ -164,7 +164,7 @@
             <div class="container">
                 <div class="case-section" style="max-width: 100%;">
                     <h2 class="case-heading">01 / How to read it</h2>
-                    <p>You sit on the left. Six agents in the middle handle everything from auditing live workflows to logging session notes. On the right are the actual MCP servers and skills each agent depends on &mdash; when two agents share one, the lines converge on a single node. Click anything to trace its connections.</p>
+                    <p>Edgar sits on the left. Six agents in the middle handle everything from auditing live workflows to logging session notes. On the right are the actual MCP servers and skills each agent depends on &mdash; when two agents share one, the lines converge on a single node. Click anything to trace its connections.</p>
                 </div>
 
                 <div class="map-stage" id="map-stage">
@@ -175,8 +175,8 @@
                     <svg id="stage-svg" viewBox="0 0 1450 900" role="img" aria-label="Left to right diagram of agents and their dependencies"></svg>
                     <div class="map-panel" id="panel">
                         <span class="panel-type" id="panel-type"><span class="dot"></span><span id="panel-type-label">Overview</span></span>
-                        <h3 class="panel-title" id="panel-title">You + Claude</h3>
-                        <p class="panel-desc" id="panel-desc">The main thread. You direct the work; Claude calls tools directly for small stuff, and dispatches these six agents for anything that benefits from its own protected context window.</p>
+                        <h3 class="panel-title" id="panel-title">Edgar + Claude</h3>
+                        <p class="panel-desc" id="panel-desc">The main thread. Edgar directs the work; Claude calls tools directly for small stuff, and dispatches these six agents for anything that benefits from its own protected context window.</p>
                         <div class="panel-links" id="panel-links" style="display:none">
                             <p class="panel-links-label">Connected to</p>
                             <div id="panel-links-list"></div>
@@ -234,8 +234,8 @@
         };
 
         var nodes = [
-            { id: 'hub', type: 'hub', x: COL_HUB, y: 450, label: 'You + Claude',
-              desc: 'The main thread. You direct the work; Claude calls tools directly for small stuff, and dispatches these six agents for anything that benefits from its own protected context window.' },
+            { id: 'hub', type: 'hub', x: COL_HUB, y: 450, label: 'Edgar + Claude',
+              desc: 'The main thread. Edgar directs the work; Claude calls tools directly for small stuff, and dispatches these six agents for anything that benefits from its own protected context window.' },
 
             { id: 'n8n-auditor', type: 'agent', x: COL_AGENT, y: 90, label: 'n8n-auditor',
               desc: 'Read-only health auditor for n8n workflows. Checks validation, wiring integrity, error-routing completeness, and naming/credential conventions — never modifies anything.' },
@@ -398,8 +398,8 @@
             edgeLayer.querySelectorAll('.edge').forEach(function (p) { p.classList.remove('active'); });
             particleLayer.querySelectorAll('.particle').forEach(function (pt) { pt.style.opacity = ''; });
             panelType.textContent = 'Overview'; panelTypeDot.style.background = COLORS.hub.core;
-            panelTitle.textContent = 'You + Claude';
-            panelDesc.textContent = 'The main thread. You direct the work; Claude calls tools directly for small stuff, and dispatches these six agents for anything that benefits from its own protected context window.';
+            panelTitle.textContent = 'Edgar + Claude';
+            panelDesc.textContent = 'The main thread. Edgar directs the work; Claude calls tools directly for small stuff, and dispatches these six agents for anything that benefits from its own protected context window.';
             panelLinks.style.display = 'none'; resetBtn.style.display = 'none';
         }
 
