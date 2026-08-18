@@ -330,11 +330,14 @@ a:focus-visible, .btn:focus-visible {
   align-self: flex-start;
   appearance: none;
   background: var(--bg-primary);
-  /* System monospace, not var(--font-body) — the IBM Plex Mono web font
-     fails to paint on native <button> elements on some Windows/Chromium
-     setups (text renders fully invisible) even though it works fine
-     everywhere else on the page, including <a> elements styled as buttons. */
-  font-family: Consolas, 'Courier New', monospace;
+  /* Generic `monospace` keyword only — not var(--font-body) or named
+     fonts like Consolas/Courier New. On some Windows/Chromium setups,
+     IBM Plex Mono AND explicitly-named system fonts fail to paint on
+     native <button> elements (text renders fully invisible) even though
+     they work fine everywhere else on the page, including <a> elements
+     styled as buttons. Only the bare generic keyword reliably painted
+     in testing — leave it unnamed. */
+  font-family: monospace;
   font-size: 1rem;
   cursor: pointer;
 }
