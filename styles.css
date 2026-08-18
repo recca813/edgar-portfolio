@@ -327,8 +327,19 @@ a:focus-visible, .btn:focus-visible {
 
 .contact-form .btn {
   align-self: flex-start;
-  background: none;
+  appearance: none;
+  background: var(--bg-primary);
+  font-family: inherit;
+  font-size: 1rem;
   cursor: pointer;
+}
+
+.form-field input:-webkit-autofill,
+.form-field input:-webkit-autofill:hover,
+.form-field input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text-primary);
+  -webkit-box-shadow: 0 0 0 1000px var(--bg-primary) inset;
+  transition: background-color 9999s ease-in-out 0s;
 }
 
 .form-honeypot {
