@@ -6,8 +6,7 @@ root-absolute nav links (`/work.html` etc.), so opening `.html` files
 directly via `file://` will break navigation.
 
 ## Structure
-- `index.html` — homepage
-- `work.html` — project index
+- `index.html` — homepage, includes the full project grid (no separate Work page)
 - `work/<slug>.html` — individual case studies
 - `about.html` — narrative + CV
 - `contact.html`
